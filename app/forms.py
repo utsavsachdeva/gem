@@ -55,7 +55,6 @@ class EditCampaignForm(CampaignForm):  # Inherit from CampaignForm
         self.goals.data = campaign.goals
 
 class AdRequestForm(FlaskForm):
-    influencer_id = SelectField('Influencer', coerce=int, validators=[DataRequired()])  
     requirements = TextAreaField('Requirements', validators=[DataRequired()])
     payment_amount = IntegerField('Payment Amount', validators=[DataRequired()])
     submit = SubmitField('Send Ad Request')
@@ -78,16 +77,6 @@ class AdRequestForm(FlaskForm):
 
 
 
-from flask_wtf import FlaskForm
-from wtforms import SelectField, TextAreaField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, ValidationError
-from .models import AdRequest, User
-
-
-from flask_wtf import FlaskForm
-from wtforms import SelectField, TextAreaField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, NumberRange
-from .models import AdRequest, User
 
 
 class EditAdRequestForm(FlaskForm):
