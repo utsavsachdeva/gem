@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Analytics{% endblock %}
+
+{% block content %}
+
+<h1 class="display-4 mt-4">Platform Analytics</h1>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h2>Top Categories</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Number of Influencers</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category, count in top_categories %}
+                    <tr>
+                        <td>{{ category }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Top Influencers</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Influencer</th>
+                    <th>Accepted Ad Requests</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for influencer, count in top_influencers %}
+                    <tr>
+                        <td>{{ influencer }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h2>Total Spending</h2>
+        <p class="lead">Total amount spent on accepted ad requests: {{ total_spending }}</p>
+    </div>
+    </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

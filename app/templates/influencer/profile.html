@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="display-4 mb-4">My Profile</h1>
+
+            <form method="POST" action="{{ url_for('influencer.profile') }}">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+                    {{ form.name(class="form-control") }}
+                    {% if form.name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.category.label(class="form-control-label") }}
+                    {{ form.category(class="form-control") }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.niche.label(class="form-control-label") }}
+                    {{ form.niche(class="form-control") }}
+                    {% if form.niche.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.niche.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.bio.label(class="form-control-label") }}
+                    {{ form.bio(class="form-control") }}
+                </div>
+
+                <h3>Social Media Links</h3>
+                <div id="social-media-links">
+                    {% for link_form in form.social_media_links %}
+                        <div class="form-row mb-2">
+                            <div class="col-md-4">
+                                {{ link_form.platform(class="form-control") }}
+                            </div>
+                            <div class="col-md-7">
+                                {{ link_form.url(class="form-control") }}
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-danger remove-link">-</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="button" class="btn btn-secondary add-link mt-2">Add Link</button>
+
+                {{ form.submit(class="btn btn-primary mt-4") }}
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.add-link').forEach(button => {
+            button.addEventListener('click', () => {
+                const linksContainer = document.getElementById('social-media-links');
+                const newLinkForm = document.createElement('div');
+                newLinkForm.innerHTML = `
+                    <div class="form-row mb-2">
+                        <div class="col-md-4">
+                            {{ form.social_media_links.append_entry().platform(class="form-control") }}
+                        </div>
+                        <div class="col-md-7">
+                            {{ form.social_media_links.append_entry().url(class="form-control") }}
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-danger remove-link">-</button>
+                        </div>
+                    </div>
+                `;
+                linksContainer.appendChild(newLinkForm);
+            });
+        });
+    
+        document.getElementById('social-media-links').addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-link')) {
+                event.target.parentNode.parentNode.remove();
+            }
+        });
+    });
+
+</script>
+{% endblock %}

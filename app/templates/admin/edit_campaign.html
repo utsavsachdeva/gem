@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Campaign{% endblock %}
+
+{% block content %}
+
+<h1 class="display-4 mt-4">Edit Campaign</h1>
+<p class="lead">Modify the details of this campaign.</p>
+
+<form method="POST" action="{{ url_for('admin.edit_campaign', campaign_id=campaign.id) }}">
+    {{ form.hidden_tag() }}  <div class="form-group">
+        {{ form.name.label(class="form-control-label") }}
+        {{ form.name(class="form-control") }}
+        {% if form.name.errors %}
+            <div class="invalid-feedback">
+                {% for error in form.name.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.description.label(class="form-control-label") }}
+        {{ form.description(class="form-control") }}
+        {% if form.description.errors %}
+            <div class="invalid-feedback">
+                {% for error in form.description.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {{ form.start_date.label(class="form-control-label") }}
+            {{ form.start_date(class="form-control") }}
+            {% if form.start_date.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.start_date.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="form-group col-md-6">
+            {{ form.end_date.label(class="form-control-label") }}
+            {{ form.end_date(class="form-control") }}
+            {% if form.end_date.errors %}
+                <div class="invalid-feedback">
+                    {% for error in form.end_date.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form.budget.label(class="form-control-label") }}
+        {{ form.budget(class="form-control") }}
+        {% if form.budget.errors %}
+            <div class="invalid-feedback">
+                {% for error in form.budget.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.visibility.label(class="form-control-label") }}
+        {{ form.visibility(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.goals.label(class="form-control-label") }}
+        {{ form.goals(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+        <a href="{{ url_for('admin.manage_campaigns') }}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

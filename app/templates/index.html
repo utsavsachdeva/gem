@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to the Influencer Engagement Platform</h1>
+    <p class="lead">Connect with sponsors and influencers to create successful campaigns.</p>
+    <hr class="my-4">
+    {% if current_user.is_authenticated %}
+        {% else %}
+        <a class="btn btn-primary btn-lg" href="{{ url_for('auth.register') }}" role="button">Register Now</a>
+        <a class="btn btn-secondary btn-lg" href="{{ url_for('auth.login') }}" role="button">Login</a>
+    {% endif %}
+</div>
+
+{% endblock %}

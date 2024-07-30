@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}View Campaign{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="display-4 mb-4">{{ campaign.name }}</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text"><strong>Description:</strong> {{ campaign.description }}</p>
+            <p class="card-text"><strong>Start Date:</strong> {{ campaign.start_date.strftime('%Y-%m-%d') }}</p>
+            <p class="card-text"><strong>End Date:</strong> {{ campaign.end_date.strftime('%Y-%m-%d') }}</p>
+            <p class="card-text"><strong>Budget:</strong> ${{ campaign.budget }}</p>
+            <p class="card-text"><strong>Goals:</strong> {{ campaign.goals }}</p>
+        </div>
+    </div>
+
+    <a href="#" class="btn btn-primary mt-3">Apply to Campaign</a>
+</div>
+{% endblock %}

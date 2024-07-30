@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="display-4 mb-4">Conversation with {{ influencer.username }}</h1>
+
+    <div class="messages" id="messages">
+        {% for message in messages %}
+            <div class="message {% if message.sender == current_user %}sent{% else %}received{% endif %}">
+                <p>{{ message.content }}</p>
+                <small class="text-muted">{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form method="POST" action="{{ url_for('sponsor.send_message', ad_request_id=ad_request_id) }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.content.label(class="sr-only") }}
+            {{ form.content(class="form-control", placeholder="Type your message...") }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+{% endblock %}

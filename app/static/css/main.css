@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5; /* Light background for better readability */
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #007bff; /* Bootstrap blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 0.25rem;
+}
+
+.form-check-label {
+    margin-left: 0.5rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6; /* Bootstrap table border color */
+}
+
+/* Buttons */
+.btn {
+    border-radius: 0.25rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Flash Messages */
+.alert {
+    margin-bottom: 1rem;
+}
+
+/* Custom Styles (Add your specific styles here) */
+.navbar {
+    background-color: #343a40; /* Example navbar background */
+}

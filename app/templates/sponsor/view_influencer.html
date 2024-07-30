@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}View Influencer{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="display-4 mb-4">Influencer Profile: {{ influencer.username }}</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text"><strong>Name:</strong> {{ influencer.name }}</p>
+            <p class="card-text"><strong>Category:</strong> {{ influencer.category.name }}</p>
+            <p class="card-text"><strong>Niche:</strong> {{ influencer.niche }}</p>
+            <p class="card-text"><strong>Bio:</strong> {{ influencer.bio }}</p>
+
+            {% if influencer.social_media_links %}
+            <h5 class="card-title mt-3">Social Media Links</h5>
+            <ul class="list-group">
+                {% for link in influencer.social_media_links %}
+                    <li class="list-group-item"><a href="{{ link.url }}" target="_blank">{{ link.platform }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <h5 class="card-title mt-3">Ratings</h5>
+            <p class="card-text"><strong>Average Rating:</strong> 
+                {% if influencer.ratings_received %}
+                    {{ "{:.1f}".format(influencer.ratings_received|average(attribute='rating')) }} stars
+                {% else %}
+                    No ratings yet
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <a href="{{ url_for('sponsor.search_influencers') }}" class="btn btn-secondary mt-3">Back to Search</a>
+</div>
+
+{% endblock %}
